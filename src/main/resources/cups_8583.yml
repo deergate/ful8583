@@ -1,0 +1,396 @@
+version: 2.1
+header:
+  - 
+    alias: field1
+    title: 'Header Length'
+    zh: '报文头长度'
+    def: 8bit
+    rejcde: '00015'
+  - 
+    alias: field2
+    title: 'Header Flag and Version'
+    zh: '头标识和版本号'
+    def: 8bit
+    rejcde: '00025'
+  -
+    alias: field3
+    title: 'Total Message Length'
+    zh: '报文总长度'
+    def: n4
+    range: '[46,1892]'
+    rejcde: '00035'
+  -
+    alias: field4
+    title: 'Destination Station ID'
+    zh: '目的ID'
+    def: ans11
+    rejcde: '00045'
+  -
+    alias: field5
+    title: 'Source Station ID'
+    zh: '源ID'
+    def: ans11
+    rejcde: '00055'
+  -
+    alias: field6
+    title: 'Reserved for Use'
+    zh: '保留使用'
+    def: 24bit
+    rejcde: '00065'
+  -
+    alias: field7
+    title: 'Batch Number'
+    zh: '批次号'
+    def: 8bit
+    rejcde: '00075'
+  -
+    alias: field8
+    title: 'Transaction Information'
+    zh: '交易信息'
+    def: ans8
+    rejcde: '00085'
+  -
+    alias: field9
+    title: 'User Information'
+    zh: '用户信息'
+    def: 8bit
+  -
+    alias: field10
+    title: 'Reject Code'
+    zh: '拒绝码'
+    def: n5
+    
+mti:
+  def: n4
+
+field2:
+  title: 'Primary Account Number (PAN)'
+  zh: '主账号'
+  def: n..19(LLVAR)
+
+field3:
+  title: 'Processing Code'
+  zh: '交易处理码'
+  def: n6
+
+field4:
+  title: 'Amount, Transaction'
+  zh: '交易金额'
+  def: n12
+
+field5:
+  title: 'Amount, Settlement'
+  zh: '清算金额'
+  def: n12
+
+field6:
+  title: 'Amount, Cardholder Billing'
+  zh: '持卡人扣账金额'
+  def: n12
+
+field7:
+  title: 'Transmission Date/Time'
+  zh: '交易传输时间'
+  def: n10
+  key: true
+
+field9:
+  title: 'Conversion Rate, Settlement'
+  zh: '清算汇率'
+  def: n8
+
+field10:
+  title: 'Conversion Rate, Cardholder Billing'
+  zh: '持卡人扣账汇率'
+  def: n8
+
+field11:
+  title: 'System Trace Audit Number'
+  zh: '系统追踪号'
+  def: n6
+  key: true
+
+field12:
+  title: 'Time, Local Transaction'
+  zh: '受卡方所在地时间'
+  def: n6
+
+field13:
+  title: 'Date, Local Transaction'
+  zh: '受卡方所在地日期'
+  def: n4
+
+field14:
+  title: 'Date, Expiration'
+  zh: '卡有效期'
+  def: n4
+
+field15:
+  title: 'Date, Settlement'
+  zh: '清算日期'
+  def: n4
+
+field16:
+  title: 'Date, Conversion'
+  zh: '兑换日期'
+  def: n4
+
+field18:
+  title: 'Merchant's Type (MCC)'
+  zh: '商户类型'
+  def: n4
+
+field19:
+  title: 'Merchant Country Code'
+  zh: '商户国家代码'
+  def: n3
+
+field22:
+  title: 'Point of Service Entry Mode Code'
+  zh: '服务点输入方式码'
+  def: n3
+
+field23:
+  title: 'Card Sequence Number'
+  zh: '卡序列号'
+  def: n3
+
+field25:
+  title: 'Point of Service Condition Code'
+  zh: '服务点条件码'
+  def: n2
+
+field26:
+  title: 'Point of Service PIN Capture Code'
+  zh: '服务点PIN获取码'
+  def: n2
+
+field28:
+  title: 'Amount, Transaction Fee'
+  zh: '交易费'
+  def: Xn8
+
+field32:
+  title: 'Acquiring Institution Identification Code'
+  zh: '受理机构标识码'
+  def: an..11(LLVAR)
+
+field33:
+  title: 'Forwarding Institution Identification Code'
+  zh: '发送机构标识码'
+  def: an..11(LLVAR)
+
+field35:
+  title: 'Track 2 Data'
+  zh: '第二磁道信息'
+  def: z..37(LLVAR)
+
+field36:
+  title: 'Track 3 Data'
+  zh: '第三磁道信息'
+  def: z...104(LLLVAR)
+  rejcde:
+    illegalLen: 10363
+    overLen: 10364
+    illegalVal: 10365
+
+field37:
+  title: 'Retrieval Reference Number'
+  zh: '检索参考号'
+  def: an12
+  rejcde:
+    illegalVal: 10375
+
+field38:
+  title: 'Authorization Identification Response'
+  zh: '授权标识应答码'
+  def: an6
+  rejcde:
+    illegalVal: 10385
+
+field39:
+  title: 'Reponse Code'
+  zh: '应答码'
+  def: an2
+  rejcde:
+    illegalVal: 10395
+
+field41:
+  title: 'Card Acceptor Terminal Identification'
+  zh: '受卡机终端标识码'
+  def: ans8
+  padding: rb
+  rejcde:
+    illegalVal: 10415
+
+field42:
+  title: 'Card Acceptor Identification Code'
+  zh: '受卡方标识码'
+  def: ans15
+  fill: '0'
+  rejcde:
+    illegalVal: 10425
+
+field43:
+  title: 'Card Acceptor Name/Location'
+  zh: '受卡方名称地址'
+  def: ans40
+  padding: rb
+  rejcde:
+    illegalVal: 10435
+
+field44:
+  title: 'Additional Response Data'
+  zh: '附加响应数据'
+  def: ans..25(LLVAR)
+  rejcde:
+    illegalLen: 10443
+    overLen: 10444
+
+field45:
+  title: 'Track 1 Data'
+  zh: '第一磁道信息'
+  def: z..76(LLVAR)
+  rejcde:
+    illegalLen: 10453
+    overLen: 10454
+    illegalVal: 10455
+
+field48:
+  title: 'Additional Data Private'
+  zh: '附加数据-私有'
+  def: ansb...512(LLLVAR)
+  composite: true
+  usecases:
+    -
+      tag: AA
+      title: 'Acquirer Addtional information'
+      zh: '受理方附加交易信息'
+      def: ans
+    -
+      tag: BC
+      title: 'Black Card Information'
+      zh: '涉嫌卡信息'
+      def: ans
+    -
+      tag: NK
+      title: 'New Key'
+      zh: '新秘钥'
+      def: bit
+    -
+      tag: IN
+      title: 'CUPSecure information'
+      zh: 'CUPSecure认证信息'
+      def: ans
+    -
+      tag: PB
+      title: 'PB'
+      zh: '基于 UICS 借贷记标准的电子现金应用的非指定账户圈存信息'
+      def: n
+    -
+      tag: IP
+      title: 'Installment Payment Information'
+      zh: '分期付款信息'
+      def: ans
+    -
+      tag: RA
+      title: 'RA'
+      zh: '折扣消费交易中的刷卡金额'
+      def: n
+    - 
+      tag: RP
+      title: 'Reward Points Redemption'
+      zh: '积分兑换信息'
+      def: ans
+    -
+      tag: PZ
+      title: 'PZ'
+      zh: '委托类业务信息'
+      def: ans
+    -
+      tag: CB
+      title: 'CB'
+      zh: '境外营销返现标识'
+      def: ans
+    -
+      tag: AS
+      title: 'AS'
+      zh: '组合用法'
+      def: TLV
+      subfields:
+        -
+          tag: AA
+          zh: '银联卡跨境交易补充信息'
+          def: an
+        -
+          ref: IN
+        -
+          ref: PB
+        -
+          ref: IP
+        -
+          ref: RA
+        -
+          ref: RP
+        -
+          ref: PZ
+        -
+          ref: BC
+        -
+          tag: AO
+          zh: '关联业务类型'
+          def: an
+        -
+          tag: AI
+          zh: '自助交易终端机具信息'
+          def: ans
+        -
+          tag: ON
+          zh: '订单号信息'
+          def: ans
+        -
+          tag: SI
+          zh: '代授权附加信息'
+          def: ans
+        -
+          tag: IA
+          zh: '转入卡所属地区信息'
+          def: an
+        -
+          tag: MT
+          zh: '业务产品标识'
+          def: n
+        -
+          tag: UP
+          zh: '银联附加信息'
+          def: ans
+        -
+          tag: CS
+          zh: '取卡信息'
+          def: ans
+        -
+          tag: OA
+          zh: '退货原始交易金额'
+          def: n
+        -
+          tag: BM
+          zh: '业务产品位图'
+          def: bit
+  rejcde:
+    illegalLen: 10483
+    overLen: 10484
+    illegalVal: 10485
+
+field49:
+  title: 'Currency Code, Transaction'
+  zh: '交易货币代码'
+  def: an3
+  rejcde:
+    illegalVal: 10495
+
+field50:
+  title: 'Currency Code, Settlement'
+  zh: '清算货币代码'
+  def: an3
+  rejcde:
+    illegalVal: 10505

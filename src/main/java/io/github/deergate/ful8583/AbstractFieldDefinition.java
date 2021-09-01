@@ -15,15 +15,35 @@
  */
 package io.github.deergate.ful8583;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  *
- * TODO FieldDefinition说明
+ * TODO AbstraceFieldDefinition说明
  *
  * @author Shang Yehua <niceshang@outlook.com>
- * @since 2021-08-24  17:14
+ * @since 2021-08-26  14:29
  *
  */
-public class FieldDefinition {
-    private int length;
+public abstract class AbstractFieldDefinition implements FieldProccessor {
+    
+    /**
+     * 域描述信息
+     */
+    @Setter @Getter
+    protected String desctiption;
+    
+    /**
+     * 域定义
+     */
+    protected final String definition;
+
+    public AbstractFieldDefinition(String definition) {
+        this.definition = definition;
+        this.parseDefinition();
+    }
+
+    protected abstract void parseDefinition();
     
 }
