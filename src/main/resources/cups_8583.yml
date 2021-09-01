@@ -394,3 +394,22 @@ field50:
   def: an3
   rejcde:
     illegalVal: 10505
+
+field51:
+  title: 'Currency Code, Cardholder Billing'
+  zh: '持卡人账户货币代码'
+  def: an3
+  rejcde:
+    illegalVal: 10515
+
+field52:
+  title: 'Pin Data'
+  zh: '个人标识码数据'
+  def: 64bit
+
+field53:
+  title: 'Security Related Control Information'
+  zh: ''
+  def: 
+  rejcde:
+    illegalVal: 
